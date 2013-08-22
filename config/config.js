@@ -7,7 +7,7 @@ module.exports = {
     db: 'mongodb://localhost/hackerboard-dev',
     root: rootPath,
     app: {
-      name: 'Copenhagen Node - Development'
+      name: 'Copenhagen Node.js Hackathon - Development'
     },
     github: {
       clientID: '77c4b42a63e4ee524d17',
@@ -19,7 +19,7 @@ module.exports = {
     db: 'mongodb://localhost/hackerboard-test',
     root: rootPath,
     app: {
-      name: 'Copenhagen Node - Test'
+      name: 'Copenhagen Node.js Hackathon - Test'
     },
     github: {
       clientID: 'APP_ID',
@@ -31,7 +31,7 @@ module.exports = {
     db: 'mongodb://localhost/hackerboard',
     root: rootPath,
     app: {
-      name: 'Copenhagen Node'
+      name: 'Copenhagen Node.js Hackathon'
     },
     github: {
       clientID: 'APP_ID',
