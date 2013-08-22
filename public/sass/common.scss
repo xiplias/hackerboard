@@ -6,15 +6,16 @@
 
 .header-login {
   text-align: right;
-  padding-top: 15px;
-
-  img {
-  	padding-right: 5px;
-  }
+  padding-top: 20px;
+  font-size: 1.5em;
+  color: #343232;
+  font-weight: bold;
 
   a {
-  	font-size: 1.5em;
   	color: #343232;
-  	font-weight: bold;
+  }
+
+  img {
+  	margin-right: 5px;
   }
 }
