@@ -1,27 +1,27 @@
-<section class="row" ng-controller="ArticlesController" ng-init="find()">
-  <section class="span5 articles">
-    <h1>Projects ({{articles.length}}) <a ng-click="project='new'" style="float: right;">Add yours</a></h1>
+<section class="row" ng-controller="ProjectsController" ng-init="find()">
+  <section class="span5 projects">
+    <h1>Projects ({{projects.length}}) <a ng-click="project='new'" style="float: right;">Add yours</a></h1>
   	<ul class="unstyled">
       <li ng-show="project=='new'" class="selected">
         <a>{{title || "Title"}}</a>
         <br>{{short || "Short picth"}}
       </li>
-  		<li ng-click="setProject(article);" ng-repeat="article in articles" class="ng-class:isSelected(article)">
-  			<a class="{{article._id}}">{{article.title}}</a>
-        <br>{{article.short}}
+  		<li ng-click="setProject(project);" ng-repeat="project in projects" class="ng-class:isSelected(project)">
+  			<a class="{{project._id}}">{{project.title}}</a>
+        <br>{{project.short}}
   		</li>
 
   	</ul>
   </section>
-  <article ng-show="edit==true" class="span7">
- 
-  </article>
-  <article ng-hide="!project || project=='new' || edit==true" class="span7">
-  </article>
-  <article class="intro" ng-hide="project">
+  <project ng-show="edit==true" class="span7">
+
+  </project>
+  <project ng-hide="!project || project=='new' || edit==true" class="span7">
+  </project>
+  <project class="intro" ng-hide="project">
     <h1>Do you have a good idea</h1>
     <h3>Add your project and spread your idea to other the other attendies </h3>
     <h2></h2>
-  </article>
-	<h1 ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/#!/articles/create">Create One</a>?</h1>
+  </project>
+	<h1 ng-hide="!projects || projects.length">No projects yet. <br> Why don't you <a href="/#!/projects/create">Create One</a>?</h1>
 </section>

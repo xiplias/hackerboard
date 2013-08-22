@@ -3,8 +3,8 @@ window.app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 	when('/projects', { templateUrl: 'views/projects/list.html' }).
 	when('/projects/new', { templateUrl: 'views/projects/create.html' }).
-	when('/projects/:articleId/edit', { templateUrl: 'views/projects/edit.html' }).
-	when('/projects/:articleId', { templateUrl: 'views/projects/view.html' }).
+	when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html' }).
+	when('/projects/:projectId', { templateUrl: 'views/projects/view.html' }).
 	otherwise({redirectTo: '/'});
 
   function mainCommentController($scope) {}
