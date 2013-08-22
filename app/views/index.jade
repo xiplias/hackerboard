@@ -1,0 +1,18 @@
+extends layouts/default
+
+block content
+  section.row(ng-controller="ArticlesController")
+    section.span5.articles(ng-init="find()")
+      h1
+        | Projects ({{projects.length}})
+        a(ng-href='#!/projects/new', style='float: right;') Add yours
+      ul.unstyled
+        li(ng-repeat="project in projects", ng-class="{selected:isSelected(project)}")
+          a(ng-href="#!/projects/{{project._id}}") {{project.title}}
+          br
+          | {{project.short}}
+    article.span7(ng-view)
+  script(type="text/javascript").
+    window.user = !{user};
+
+

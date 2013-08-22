@@ -1,0 +1,56 @@
+<div class="project" ng-init="findOne()">
+  <h2>{{project.title}}</h2>
+  <p>{{project.short}}</p>
+  <div class="top">
+    <div class="members">
+      <h3>Project Members (2)</h3>
+      <img src="http://0.gravatar.com/avatar/57ea2a8357715a789388c7ebd4fa6966" width="40">
+      <img src="http://2.gravatar.com/avatar/ed0ce2998995c2b649c31ca06a72dae4" width="40">
+    </div>
+    <div class="actions">
+      <a ng-href="#!/projects/{{project._id}}/edit" class="btn">Edit</a>
+      <br><br>
+      <a class="btn" ng-hide="!project.github" href="{{project.github}}">Github repo</a>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="project-content">
+    <h3>Description</h3>
+    {{project.content}}
+  </div>
+  <div class="project-looking_for">
+    <h3>Looking for</h3>
+    <div class="looking_for" ng-repeat="tag in tags">{{tag}}</div>
+    <a href="#" class="btn">Join Team</a>
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    if (typeof DISQUS === 'undefined') {
+      var disqus_shortname = 'cphhackathon';
+      var disqus_identifier = window.location.href;
+      var disqus_url = window.location.href;
+      console.log("disqus load");
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    } else {
+      console.log('reset');
+      DISQUS.reset({
+        reload: true,
+        config: function () {  
+          this.page.identifier = window.location.href;  
+          this.page.url = window.location.href;
+        }
+      });
+    }
+  
+
+
+
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
