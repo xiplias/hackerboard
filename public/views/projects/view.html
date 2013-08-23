@@ -7,9 +7,9 @@
   </div>
   <div class="top">
     <div class="members">
-      <h3>Project Members (2)</h3>
-      <img src="http://0.gravatar.com/avatar/57ea2a8357715a789388c7ebd4fa6966" width="40">
-      <img src="http://2.gravatar.com/avatar/ed0ce2998995c2b649c31ca06a72dae4" width="40">
+      <h3>Project Creator</h3>
+      <img src="{{project.user.github.avatar_url}}" width="50" />
+      <a href="https://github.com/{{project.user.github.login}}" target="_blank">{{project.user.name}}</a>
     </div>
     <div class="actions">
       <a ng-href="#!/projects/{{project._id}}/edit" ng-show="user" class="btn">Edit</a>
@@ -18,16 +18,11 @@
     </div>
     <div class="clear"></div>
   </div>
-  <div class="project-looking_for">
-    <h4>Looking for</h4>
-    <div class="looking_for" ng-repeat="tag in tags">{{tag}}</div>
-    <a href="#" class="btn">Join Team</a>
-  </div>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var projectId = window.location.href.match(/projects\/([a-z0-9]*)/)[1];
     var disqus_identifier = 'project-' + projectId;
-    var disqus_url = window.location.origin + '/projects/' + projectId;
+    var disqus_url = window.location.origin + '#!/projects/' + projectId;
     if (typeof DISQUS === 'undefined') {
       var disqus_shortname = 'cphhackathon';
       (function() {

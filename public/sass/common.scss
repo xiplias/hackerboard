@@ -1,3 +1,52 @@
+body {
+  font: 12px/20px "Helvetica Neue",Helvetica,Arial,Sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #eceef1;
+  margin-top: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
+h1, h2, h3 {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 400;
+  color: #000;
+}
+
+label {
+  font-weight: bold;
+  color: #000;
+}
+
+header {
+  background: #dd4a38;
+  top: 20px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  padding-bottom: 10px;
+
+  h1 a {
+    color: #f1f1f1;
+    font-size: 1.1em;
+    font-weight: 200;
+
+    &:hover {
+      color: #e4e4e4;
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: #f1f1f1;
+    }
+  }
+}
 
 .content {
     margin-top: 50px;
@@ -9,7 +58,6 @@
   padding-top: 20px;
   font-size: 1.5em;
   color: #343232;
-  font-weight: bold;
 
   a {
   	color: #343232;
@@ -18,4 +66,9 @@
   img {
   	margin-right: 5px;
   }
+}
+
+.welcome {
+  padding-left: 50px;
+  font-size: 1.2em;
 }
