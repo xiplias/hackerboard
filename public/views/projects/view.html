@@ -1,6 +1,10 @@
 <div class="project" ng-init="findOne()">
   <h2>{{project.title}}</h2>
   <p>{{project.short}}</p>
+  <div class="project-content">
+    <h3>Description</h3>
+    {{project.content}}
+  </div>
   <div class="top">
     <div class="members">
       <h3>Project Members (2)</h3>
@@ -8,18 +12,14 @@
       <img src="http://2.gravatar.com/avatar/ed0ce2998995c2b649c31ca06a72dae4" width="40">
     </div>
     <div class="actions">
-      <a ng-href="#!/projects/{{project._id}}/edit" class="btn">Edit</a>
+      <a ng-href="#!/projects/{{project._id}}/edit" ng-show="user" class="btn">Edit</a>
       <br><br>
       <a class="btn" ng-hide="!project.github" href="{{project.github}}">Github repo</a>
     </div>
     <div class="clear"></div>
   </div>
-  <div class="project-content">
-    <h3>Description</h3>
-    {{project.content}}
-  </div>
   <div class="project-looking_for">
-    <h3>Looking for</h3>
+    <h4>Looking for</h4>
     <div class="looking_for" ng-repeat="tag in tags">{{tag}}</div>
     <a href="#" class="btn">Join Team</a>
   </div>
