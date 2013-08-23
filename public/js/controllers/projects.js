@@ -1,11 +1,13 @@
-function ProjectsController($scope, $rootScope, $window, $routeParams, $location, Global, Projects) {
+'use strict';
+
+function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $location, Global, Projects) {
   $scope.global = Global;
   $scope.tags = [];
-  $scope.user = window.user
+  $scope.user = window.user;
 
-  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+  $rootScope.$on('$routeChangeStart', function (event, next) {
     // if route requires auth and user is not logged in
-    if (!user && next.$$route && next.$$route.loginRequred) {
+    if (!$scope.user && next.$$route && next.$$route.loginRequred) {
       Global.openLoginModal();
       $window.history.back();
     }
@@ -21,7 +23,7 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $location
 
     project.$save(function (response) {
       $scope.projects = $scope.find();
-      $location.path("projects/" + response._id);
+      $location.path('projects/' + response._id);
     });
   };
 
@@ -33,7 +35,7 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $location
     project.$remove();
 
     for (var i in $scope.projects) {
-      if ($scope.projects[i] == project) {
+      if ($scope.projects[i] === project) {
         $scope.projects.splice(i, 1);
       }
     }
@@ -41,7 +43,7 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $location
 
   $scope.update = function () {
     var project = $scope.project;
-    project.looking_for = $scope.tags;
+    
     if (!project.updated) {
       project.updated = [];
     }
@@ -49,7 +51,7 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $location
 
     project.$update(function () {
       $scope.projects = $scope.find();
-      $location.path("projects/" + project._id);
+      $location.path('projects/' + project._id);
     });
   };
 
@@ -62,7 +64,6 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $location
   $scope.findOne = function () {
     Projects.get({ projectId: $routeParams.projectId }, function (project) {
       $scope.project = project;
-      console.log(project)
     });
   };
 }
