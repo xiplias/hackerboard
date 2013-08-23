@@ -5,7 +5,8 @@ window.app.config(['$routeProvider', function($routeProvider) {
 	when('/projects/new', { templateUrl: 'views/projects/create.html', loginRequred: true }).
 	when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html', loginRequred: true }).
 	when('/projects/:projectId', { templateUrl: 'views/projects/view.html' }).
-	otherwise({redirectTo: '/'});
+	when('/', { templateUrl: 'views/index.html' }).
+  otherwise({redirectTo: '/'});
 
   function mainCommentController($scope) {}
 }]);
