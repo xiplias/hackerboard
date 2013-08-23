@@ -1,7 +1,15 @@
-function ProjectsController($scope, $routeParams, $location, Global, Projects) {
+function ProjectsController($scope, $rootScope, $window, $routeParams, $location, Global, Projects) {
   $scope.global = Global;
-
   $scope.tags = [];
+  $scope.user = window.user
+
+  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+    // if route requires auth and user is not logged in
+    if (!user && next.$$route && next.$$route.loginRequred) {
+      Global.openLoginModal();
+      $window.history.back();
+    }
+  });
 
   $scope.create = function () {
     var project = new Projects({
@@ -54,6 +62,7 @@ function ProjectsController($scope, $routeParams, $location, Global, Projects) {
   $scope.findOne = function () {
     Projects.get({ projectId: $routeParams.projectId }, function (project) {
       $scope.project = project;
+      console.log(project)
     });
   };
 }

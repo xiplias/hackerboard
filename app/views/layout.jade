@@ -23,6 +23,15 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.face
     section.content
       section.container
         block content
+    div(ng-controller="LoginModalController")
+      div(modal='shouldBeOpen', close='close()', options='opts')
+        .modal-header
+          h3 You need to be logged in
+        .modal-body(style="text-align:center;padding: 40px 20px;")
+          a(href="/auth/github", class="btn btn-large") 
+            img(src="/img/github.png", style="padding-right: 10px")
+            | Login with Github
+
     
     script(type='text/javascript', src='lib/jquery/jquery.min.js')
 
@@ -40,7 +49,8 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.face
     script(type='text/javascript', src='js/services/projects.js')
 
     script(type='text/javascript', src='js/controllers/projects.js')
-    script(type='text/javascript', src='js/controllers/header.js')  
+    script(type='text/javascript', src='js/controllers/header.js') 
+    script(type='text/javascript', src='js/controllers/login_modal.js')  
     script(type='text/javascript', src='js/init.js')
 
     //livereload script rendered 

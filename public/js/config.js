@@ -2,8 +2,8 @@
 window.app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.
 	when('/projects', { templateUrl: 'views/projects/list.html' }).
-	when('/projects/new', { templateUrl: 'views/projects/create.html' }).
-	when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html' }).
+	when('/projects/new', { templateUrl: 'views/projects/create.html', loginRequred: true }).
+	when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html', loginRequred: true }).
 	when('/projects/:projectId', { templateUrl: 'views/projects/view.html' }).
 	otherwise({redirectTo: '/'});
 
