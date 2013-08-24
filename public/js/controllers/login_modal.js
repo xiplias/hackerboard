@@ -10,6 +10,6 @@ function LoginModalController ($scope, $location, Global) {
 
   $scope.opts = {
     backdropFade: true,
-    dialogFade:true
+    dialogFade: true
   };
 }

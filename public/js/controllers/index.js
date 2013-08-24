@@ -1,3 +1,3 @@
-function IndexController($scope){
+function IndexController($scope) {
 
 }
