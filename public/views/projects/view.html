@@ -3,7 +3,7 @@
   <p>{{project.short}}</p>
   <div class="project-content">
     <h3>Description</h3>
-    {{project.content}}
+    <div ng-bind-html-unsafe="project.content | showdown"></div>
   </div>
   <div class="top">
     <div class="members">
