@@ -9,6 +9,8 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $l
       Global.openLoginModal();
       $window.history.back();
     }
+  $http.get('/users/me/repositories').success(function (result) {
+    $scope.repos = result;
   });
 
   $scope.create = function () {

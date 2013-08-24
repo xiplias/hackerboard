@@ -10,10 +10,9 @@ var UserSchema = new Schema({
   provider: String,
   hashed_password: String,
   salt: String,
-  facebook: {},
-  twitter: {},
   github: {},
-  google: {}
+  githubAccessToken: String,
+  githubRefreshToken: String
 });
 
 UserSchema

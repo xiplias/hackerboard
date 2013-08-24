@@ -33,6 +33,8 @@ module.exports = function (passport, config) {
             , username: profile.username
             , provider: 'github'
             , github: profile._json
+            , githubAccessToken: accessToken
+            , githubRefreshToken: refreshToken
           })
           user.save(function (err) {
             if (err) console.log(err)
