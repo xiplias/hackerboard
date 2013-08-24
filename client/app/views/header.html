@@ -1,0 +1,19 @@
+<div ng-controller="HeaderController" ng-init="init()">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <h1><a ng-href="#!/">Copenhagen Node Hackathon #2</a></h1>
+      </div>
+
+      <div class="span4 header-login">
+        <a href="/auth/github" ng-hide="user">
+          <img src="/img/github.png">Login
+        </a>
+        <span ng-show="user">
+          {{user.name}} -
+          <a href="/logout">Logout</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
