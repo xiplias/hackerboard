@@ -22,7 +22,10 @@ module.exports = function (app, passport, auth) {
 
   app.get('/users/me/repositories', users.repositories);
 
-  app.param('projectId', projects.project);
+  app.param('projectId', projects.project)
+      
+  var activity = require('../app/controllers/activity')
+  app.get('/activity', activity.index);
 
   // home route
   var index = require('../app/controllers/index');
