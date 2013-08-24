@@ -20,10 +20,10 @@ module.exports = function (app, passport, auth) {
   app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update)
   app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy)
 
-  app.param('projectId', projects.project)
+  app.param('projectId', projects.project);
 
   // home route
-  var index = require('../app/controllers/index')
-  app.get('/', index.render)
+  var index = require('../app/controllers/index');
+  app.get('/', index.render);
 
 }
