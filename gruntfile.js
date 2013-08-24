@@ -19,7 +19,6 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['public/sass/**'],
-                tasks: ['compass'],
                 options: {
                     livereload: true,
                 },
@@ -27,21 +26,6 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: ['gruntfile.js']
-        },
-        compass: { // Task
-            dist: { // Target
-                options: { // Target options
-                    sassDir: 'public/sass',
-                    cssDir: 'public/css',
-                    environment: 'production'
-                }
-            },
-            dev: { // Another target
-                options: {
-                    sassDir: 'public/sass',
-                    cssDir: 'public/css'
-                }
-            }
         },
         nodemon: {
             dev: {
@@ -75,13 +59,12 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load NPM tasks 
-    grunt.loadNpmTasks('grunt-contrib-compass');
+    // Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'compass', 'concurrent:target']);
+    grunt.registerTask('default', ['jshint', 'concurrent:target']);
 };

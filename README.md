@@ -10,17 +10,12 @@ Requires a running mongodb
 npm install
 ```
 
-2. Install compass
-```bash
-gem install compass
-```
-
-3. Install grunt
+2. Install grunt
 ```bash
 npm install -g grunt-cli
 ```
 
-4. Start dev server port 3000
+3. Start dev server port 3000
 ```bash
 grunt
 ```
