@@ -18,7 +18,7 @@ module.exports = function (app, config, passport) {
     level: 9
   }))
   app.use(express.favicon())
-  app.use(express.static(config.root + '/public'))
+  app.use(express.static(config.root + '/client/dist'));
 
   // don't use logger for test env
   if (process.env.NODE_ENV !== 'test') {

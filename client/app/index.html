@@ -1,0 +1,102 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css">
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="styles/application.css">
+
+    <script src='//use.typekit.net/ovo5efo.js'></script>
+    <script>
+      try{Typekit.load();}catch(e){}
+    </script>
+  </head>
+  <body>
+    <header>
+      <div ng-controller="HeaderController" ng-init="init()">
+        <div class="container">
+          <div class="row">
+            <div class="span8">
+              <h1><a ng-href="#!/">Copenhagen Node Hackathon #2</a></h1>
+            </div>
+
+            <div class="span4 header-login">
+              <a href="/auth/github" ng-hide="user">
+                <img src="/images/github.png">Login
+              </a>
+              <span ng-show="user">
+                {{user.name}} -
+                <a href="/logout">Logout</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <section class="content">
+      <section class="container">
+        <section class="row" ng-controller="ProjectsController">
+          <section class="span5 projects" ng-init="find()">
+            <h1>
+              Projects ({{projects.length}})
+              <a ng-href="#!/projects/{{project._id}}">Add yours</a>
+            </h1>
+            <ul class="unstyled">
+              <li ng-repeat="project in projects" ng-class="{selected:isSelected(project)}">
+                <a ng-href="#!/projects/{{project._id}}">
+                  {{project.title}}
+                </a>
+                <br>
+                {{project.short}}
+              </li>
+            </ul>
+          </section>
+          <div class="span7" ng-view></div>
+        </section>
+      </section>
+    </section>
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!-- build:js scripts/modules.js -->
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/showdown/compressed/showdown.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/directives.js"></script>
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/services/global.js"></script>
+    <script src="scripts/services/projects.js"></script>
+    <script src="scripts/controllers/projects.js"></script>
+    <script src="scripts/controllers/header.js"></script>
+    <script src="scripts/controllers/login_modal.js"></script>
+    <script src="scripts/init.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
