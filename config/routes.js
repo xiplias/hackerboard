@@ -1,34 +1,33 @@
 
-var async = require('async')
-
 module.exports = function (app, passport, auth) {
 
   // user routes
-  var users = require('../app/controllers/users')
-  app.get('/login', users.signin)
-  app.get('/logout', users.signout)
+  var users = require('../app/controllers/users'),
+  projects = require('../app/controllers/projects'),
+  activity = require('../app/controllers/activity'),
+  index = require('../app/controllers/index');
 
-  app.get('/auth/github', passport.authenticate('github', { failureRedirect: '/signin' }), users.signin)
-  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/signin' }), users.authCallback)
+  app.get('/login', users.signin);
+  app.get('/logout', users.signout);
 
-  app.param('userId', users.user)
+  app.get('/auth/github', passport.authenticate('github', { failureRedirect: '/signin' }), users.signin);
+  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/signin' }), users.authCallback);
 
-  var projects = require('../app/controllers/projects')
-  app.get('/projects', projects.all)
-  app.post('/projects', auth.requiresLogin, projects.create)
-  app.get('/projects/:projectId', projects.show)
-  app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update)
-  app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy)
+  app.param('userId', users.user);
+
+  app.get('/projects', projects.all);
+  app.post('/projects', auth.requiresLogin, projects.create);
+  app.get('/projects/:projectId', projects.show);
+  app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update);
+  app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy);
 
   app.get('/users/me/repositories', users.repositories);
 
-  app.param('projectId', projects.project)
+  app.param('projectId', projects.project);
       
-  var activity = require('../app/controllers/activity')
   app.get('/activity', activity.index);
 
   // home route
-  var index = require('../app/controllers/index');
   app.get('/', index.render);
 
-}
+};

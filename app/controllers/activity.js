@@ -1,3 +1,5 @@
+'use strict';
+
 var async = require('async'),
 _         = require('underscore'),
 mongoose  = require('mongoose'),
