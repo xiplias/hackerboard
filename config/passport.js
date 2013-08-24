@@ -41,7 +41,8 @@ module.exports = function (passport, config) {
             return done(err, user)
           })
         } else {
-          user.update({githubAccessToken: accessToken}, function() {});
+          user.githubAccessToken = accessToken;
+          user.save();
 
           return done(err, user);
         }
