@@ -2,6 +2,10 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $l
   $scope.global = Global;
   $scope.tags = [];
 
+  $http.get('/users/me/repositories').success(function (result) {
+    $scope.repos = result;
+  });
+
   $scope.create = function () {
     var project = new Projects({
       title: this.title,
