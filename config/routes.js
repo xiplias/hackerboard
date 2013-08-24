@@ -20,6 +20,8 @@ module.exports = function (app, passport, auth) {
   app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update)
   app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy)
 
+  app.get('/users/me/repositories', users.repositories);
+
   app.param('projectId', projects.project)
 
   // home route
