@@ -70,6 +70,19 @@
       </section>
     </section>
 
+    <div ng-controller="LoginModalController">
+      <div modal='shouldBeOpen' close='close()' options='opts'>
+        <div class="modal-header">
+          <h3>You need to be logged in</h3>
+        <div class="modal-body" style="text-align:center;padding: 40px 20px;">
+          <a href="/auth/github" class="btn btn-large">
+            <img src="/images/github.png" style="padding-right: 10px">
+            Login with Github
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
