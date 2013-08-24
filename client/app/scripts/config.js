@@ -1,12 +1,12 @@
 //Setting up route
 window.app.config(['$routeProvider', function ($routeProvider) {
-	$routeProvider.
-	when('/projects', { templateUrl: 'views/projects/list.html' }).
-	when('/projects/new', { templateUrl: 'views/projects/create.html', loginRequred: true }).
-	when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html', loginRequred: true }).
-	when('/projects/:projectId', { templateUrl: 'views/projects/view.html' }).
-	when('/', { templateUrl: 'views/index.html' }).
-  otherwise({redirectTo: '/'});
+  $routeProvider
+    .when('/projects', { templateUrl: 'views/projects/list.html' })
+    .when('/projects/new', { templateUrl: 'views/projects/create.html', loginRequred: true })
+    .when('/projects/:projectId/edit', { templateUrl: 'views/projects/edit.html', loginRequred: true })
+    .when('/projects/:projectId', { templateUrl: 'views/projects/view.html' })
+    .when('/', { templateUrl: 'views/index.html' })
+    .otherwise({redirectTo: '/'});
 }]);
 
 //Removing tomcat unspported headers

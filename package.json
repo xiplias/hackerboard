@@ -15,7 +15,7 @@
   "scripts": {
     "start": "grunt",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "cd client;../node_modules/bower/bin/bower install;cd ..;"
   },
   "dependencies": {
     "express": "latest",
@@ -30,16 +30,5 @@
     "view-helpers": "latest",
     "mean-logger": "latest",
     "github": "latest"
-  },
-  "devDependencies": {
-    "should": "latest",
-    "mocha": "latest",
-    "bower": "latest",
-    "grunt": "~0.4.1",
-    "grunt-contrib-compass": "~0.3.0",
-    "grunt-contrib-watch": "~0.4.4",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-nodemon": "0.0.8",
-    "grunt-concurrent": "~0.3.0"
   }
 }

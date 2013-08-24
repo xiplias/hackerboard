@@ -1,4 +1,4 @@
-function LoginModalController ($scope, $location, Global) {
+function LoginModalController($scope, $location, Global) {
   Global.openLoginModal = function () {
     $scope.shouldBeOpen = true;
   };
