@@ -15,7 +15,8 @@
         "require": false,
         "exports": false,
         "angular": false,
-        "Showdown": false
+        "Showdown": false,
+        "moment": false
     },
 
     "node" : true,

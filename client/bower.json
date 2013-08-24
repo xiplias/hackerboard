@@ -11,7 +11,8 @@
     "bootstrap": "2.3.2",
     "angular-bootstrap": "~0.4.0",
     "jquery": "~1.9.1",
-    "showdown": "latest"
+    "showdown": "latest",
+    "moment": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
