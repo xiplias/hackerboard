@@ -5,7 +5,7 @@
 
 var mongoose  = require('mongoose'),
     User      = mongoose.model('User'),
-    gitHubApi = require('github'),
+    gh = require('../../lib/github'),
     _         = require('underscore');
 
 exports.authCallback = function (req, res) {
@@ -50,18 +50,12 @@ exports.user = function (req, res, next, id) {
  * Pull a  listing of the currently logged in users github repositories
  */
 exports.repositories = function (req, res) {
-  var github = new gitHubApi({
-    version: "3.0.0",
-    timeout: 5000
-  });
-
+  var github = gh.getGitHubApi(),
+  repos = [];
   github.repos.getFromUser({"user": req.user.username}, function (err, result) {
-    var repos = [];
-
     _.each(result, function (elm) {
       repos.push(elm.full_name);
     });
-
     res.jsonp(repos);
   });
 };
