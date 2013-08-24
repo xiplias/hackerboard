@@ -9,39 +9,65 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
-        <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css">
-        <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css">
+    <!-- endbuild -->
 
-        <link rel="stylesheet" href="styles/application.css">
+    <link rel="stylesheet" href="styles/application.css">
 
-        <!--         <link rel="stylesheet" href="css/common.css">
-        <link rel="stylesheet" href="css/views/projects.css"> -->
-</head>
+    <script src='//use.typekit.net/ovo5efo.js'></script>
+    <script>
+      try{Typekit.load();}catch(e){}
+    </script>
+  </head>
   <body>
+    <header>
+      <div ng-controller="HeaderController" ng-init="init()">
+        <div class="container">
+          <div class="row">
+            <div class="span8">
+              <h1><a ng-href="#!/">Copenhagen Node Hackathon #2</a></h1>
+            </div>
+
+            <div class="span4 header-login">
+              <a href="/auth/github" ng-hide="user">
+                <img src="/images/github.png">Login
+              </a>
+              <span ng-show="user">
+                {{user.name}} -
+                <a href="/logout">Logout</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <section class="row" ng-controller="ProjectsController">
-      <section class="span5 projects" ng-init="find()">
-        <h1>
-          Projects ({{projects.length}})
-          <a ng-href="#!/projects/{{project._id}}">Add yours</a>
-        </h1>
-        <ul class="unstyled">
-          <li ng-repeat="project in projects" ng-class="{selected:isSelected(project)}">
-            <a ng-href="#!/projects/{{project._id}}">
-              {{project.title}}
-              <br>
-              {{project.short}}
-            </a>
-          </li>
-        </ul>
+    <section class="content">
+      <section class="container">
+        <section class="row" ng-controller="ProjectsController">
+          <section class="span5 projects" ng-init="find()">
+            <h1>
+              Projects ({{projects.length}})
+              <a ng-href="#!/projects/{{project._id}}">Add yours</a>
+            </h1>
+            <ul class="unstyled">
+              <li ng-repeat="project in projects" ng-class="{selected:isSelected(project)}">
+                <a ng-href="#!/projects/{{project._id}}">
+                  {{project.title}}
+                </a>
+                <br>
+                {{project.short}}
+              </li>
+            </ul>
+          </section>
+          <div class="span7" ng-view></div>
+        </section>
       </section>
-      <div class="project span7" ng-view></div>
     </section>
 
     <!--[if lt IE 9]>
