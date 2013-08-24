@@ -1,17 +1,6 @@
 function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $location, Global, Projects) {
   $scope.global = Global;
   $scope.tags = [];
-  $scope.user = window.user;
-
-  $rootScope.$on('$routeChangeStart', function (event, next) {
-    // if route requires auth and user is not logged in
-    if (!$scope.user && next.$$route && next.$$route.loginRequred) {
-      Global.openLoginModal();
-      $window.history.back();
-    }
-  $http.get('/users/me/repositories').success(function (result) {
-    $scope.repos = result;
-  });
 
   $scope.create = function () {
     var project = new Projects({
@@ -59,11 +48,20 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $l
     Projects.query(query, function (projects) {
       $scope.projects = projects;
     });
+
+    console.log(Global, $scope.global);
   };
 
   $scope.findOne = function () {
     Projects.get({ projectId: $routeParams.projectId }, function (project) {
       $scope.project = project;
+    });
+  };
+
+  $scope.activity = function () {
+    $http.get('/activity').success(function (result) {
+      console.log(result);
+      $scope.activities = result;
     });
   };
 }

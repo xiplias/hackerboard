@@ -22,6 +22,7 @@ module.exports = function (app, passport, auth) {
   app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy);
 
   app.get('/users/me/repositories', users.repositories);
+  app.get('/users/me', users.me);
 
   app.param('projectId', projects.project);
       

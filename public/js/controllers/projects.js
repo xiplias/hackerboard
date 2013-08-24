@@ -3,12 +3,8 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $l
   $scope.tags = [];
   $scope.user = window.user;
 
-  $rootScope.$on('$routeChangeStart', function (event, next) {
-    // if route requires auth and user is not logged in
-    if (!$scope.user && next.$$route && next.$$route.loginRequred) {
-      Global.openLoginModal();
-      $window.history.back();
-    }
+  $http.get('/users/me/repositories').success(function (result) {
+    $scope.repos = result;
   });
 
   $scope.create = function () {

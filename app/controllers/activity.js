@@ -18,21 +18,26 @@ exports.index = function (req, res) {
     },
 
     commits: [ "projects", function (callback) {
-      var github = gh.getGitHubApi(),
-      tasks = {};
+      var github = gh.getGitHubApi(req.user.githubAccessToken),
+      tasks = [];
       _.each(activity.projects, function (project) {
         var parts = project.github.split("/").slice(-2),
         user = parts[0],
         repo = parts[1];
 
-        tasks[user + '/' + repo] = function (callback) {
+        tasks.push(function (callback) {
           github.repos.getCommits({
             "user": user,
             "repo": repo
           }, function (err, result) {
+            // Adds repo to each commit
+            result.forEach(function (e) {
+              e.repo = user + "/" + repo;
+            });
+            
             callback(null, result);
           });
-        };
+        });
       });
 
       async.parallelLimit(tasks, 5, function (err, results) {
@@ -40,9 +45,7 @@ exports.index = function (req, res) {
       });
     }]
   }, function (err, results) {
-    res.jsonp({
-      "commits": results.commits
-    });
+    res.jsonp(results.commits[0]);
   });
 
 };
