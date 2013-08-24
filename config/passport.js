@@ -41,9 +41,11 @@ module.exports = function (passport, config) {
             return done(err, user)
           })
         } else {
-          return done(err, user)
+          user.update({githubAccessToken: accessToken}, function() {});
+
+          return done(err, user);
         }
-      })
+      });
     }
-  ))
-}
+  ));
+};
