@@ -1,5 +1,3 @@
-'use strict';
-
 function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $location, Global, Projects) {
   $scope.global = Global;
   $scope.tags = [];
