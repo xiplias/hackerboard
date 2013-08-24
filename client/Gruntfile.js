@@ -101,6 +101,22 @@ module.exports = function (grunt) {
         }
       }
     },
+    stylus: {
+      compile: {
+        options: {
+          paths: ['app/styles'],
+          urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
+          "include css": true
+        },
+        files: {
+          'dist/styles/application.css': [
+            'app/styles/common.styl',
+            'app/styles/views/projects.styl'
+
+          ]
+        }
+      }
+    },
     open: {
       server: {
         url: 'http://localhost:<%= connect.options.port %>'
@@ -342,6 +358,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'stylus',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
