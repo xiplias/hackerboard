@@ -1,55 +1,58 @@
 'use strict';
 
 var async = require('async'),
-_         = require('underscore'),
 mongoose  = require('mongoose'),
 Project   = mongoose.model('Project'),
 gh        = require('../../lib/github'),
-User      = mongoose.model('User');
+User      = mongoose.model('User'),
+common    = require('common');
 
 exports.index = function (req, res) {
-  var activity = {};
-
-  async.auto({
-    projects: function (callback) {
-      Project.find({ github: { $exists: true }}).exec(function (err, projects) {
-        if (err) throw err;
-
-        activity.projects = projects || [];
-        callback(null, projects);
+  common.step([
+    function (next) {
+      Project.find({ github: { $exists: true }}).exec(next);
+    },
+    function (projects, next) {
+      this.projects = projects;
+      projects.forEach(function (project) {
+        User.findOne({_id : project.user}, next.parallel());
       });
     },
+    function (users, next) {
+      var that = this;
+      users.forEach(function (user, index) {
+        if (!user || !user.githubAccessToken) return;
+        var github = gh.getGitHubApi(user.githubAccessToken),
+            parts = that.projects[index].github.split("/"),
+            user = parts[0],
+            repo = parts[1],
+            parallel = next.parallel();
 
-    commits: [ "projects", function (callback) {      
-      activity.projects.forEach(function (project) {
-        User.findOne({_id : project.user}, function (err, user) {
-          if (err) throw err;
+        github.repos.getCommits({
+          "user": user,
+          "repo": repo
+        }, function (err, result) {
+          if (err) return parallel(null, []);
 
-          if (user && user.githubAccessToken) {
-            var github = gh.getGitHubApi(user.githubAccessToken),
-                parts = project.github.split("/"),
-                user = parts[0],
-                repo = parts[1];
+          // Adds repo to each commit
+          result.forEach(function (e) {
+            e.repo = user + "/" + repo;
+          });
 
-            github.repos.getCommits({
-              "user": user,
-              "repo": repo
-            }, function (err, result) {
-              if (err) throw err;
-              // Adds repo to each commit
-              result.forEach(function (e) {
-                e.repo = user + "/" + repo;
-              });
-              
-              callback(null, result);
-            });
-          }
+          parallel(null, result);
         });
       });
-    }]
-  }, function (err, results) {
-    if (err) throw err;
-    res.jsonp(results.commits);
-  });
+    },
+    function (results) {
+      var commits = Array.prototype.concat.apply([], results);
 
+      commits.sort(function (a,b) {
+        return (new Date(b.commit.committer.date)).getTime() - (new Date(a.commit.committer.date)).getTime();
+      });
+
+      res.jsonp(commits);
+    }
+  ], function (err) {
+    if (err) throw err;
+  });
 };
