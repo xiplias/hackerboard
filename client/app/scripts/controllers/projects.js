@@ -40,6 +40,7 @@ function ProjectsController($scope, $rootScope, $window, $routeParams, $http, $l
     if (!project.updated) {
       project.updated = [];
     }
+    
     project.updated.push(new Date().getTime());
 
     project.$update(function () {
