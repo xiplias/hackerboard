@@ -50,13 +50,17 @@ exports.user = function (req, res, next, id) {
  * Pull a  listing of the currently logged in users github repositories
  */
 exports.repositories = function (req, res) {
-  var github = gh.getGitHubApi(req.user.githubAccessToken),
-  repos = [];
-  github.repos.getFromUser({"user": req.user.github.login}, function (err, result) {
-    if (err) throw err;
-    _.each(result, function (elm) {
-      repos.push(elm.full_name);
+  if(req.user && req.user.githubAccessToken) {
+    var github = gh.getGitHubApi(req.user.githubAccessToken),
+    repos = [];
+    github.repos.getFromUser({"user": req.user.github.login}, function (err, result) {
+      if (err) throw err;
+      _.each(result, function (elm) {
+        repos.push(elm.full_name);
+      });
+      res.jsonp(repos);
     });
-    res.jsonp(repos);
-  });
+  } else {
+    res.jsonp([]);
+  }
 };
