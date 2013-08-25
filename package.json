@@ -14,8 +14,7 @@
   },
   "scripts": {
     "start": "grunt",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js",
-    "postinstall": "cd client;../node_modules/bower/bin/bower install;cd ..;"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js"
   },
   "dependencies": {
     "express": "latest",
@@ -29,6 +28,7 @@
     "async": "latest",
     "view-helpers": "latest",
     "mean-logger": "latest",
-    "github": "latest"
+    "github": "latest",
+    "common": "latest"
   }
 }
