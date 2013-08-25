@@ -36,7 +36,6 @@ exports.index = function (req, res) {
               "repo": repo
             }, function (err, result) {
               if (err) throw err;
-              console.log("hey");
               // Adds repo to each commit
               result.forEach(function (e) {
                 e.repo = user + "/" + repo;
