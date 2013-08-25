@@ -3,7 +3,7 @@
   <table cellspacing="3">
     <tr ng-repeat="activity in activities">
       <td style="padding: 10px;white-space: nowrap;border-bottom: 5px #eceef1 solid;">
-        <a>{{activity.commit.committer.name}}</a>
+        <a href="http://github.com/{{activity.author.login}}">{{activity.commit.committer.name}}</a>
         <br>{{activity.commit.committer.date | fromNow }}
       </td>
       <td style="padding: 10px;border-bottom: 5px #eceef1 solid; border-left: 3px #666 solid">
