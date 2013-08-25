@@ -12,7 +12,7 @@ exports.index = function (req, res) {
 
   async.auto({
     projects: function (callback) {
-      Project.find({"github": /^http/}).exec(function (err, projects) {
+      Project.find({ github: { $exists: true }}).exec(function (err, projects) {
         if (err) throw err;
 
         activity.projects = projects || [];
@@ -22,12 +22,12 @@ exports.index = function (req, res) {
 
     commits: [ "projects", function (callback) {      
       activity.projects.forEach(function (project) {
-        User.findOne({_id : project.user}, function(err, user) {
+        User.findOne({_id : project.user}, function (err, user) {
           if (err) throw err;
 
           if (user && user.githubAccessToken) {
             var github = gh.getGitHubApi(user.githubAccessToken),
-                parts = project.github.split("/").slice(-2),
+                parts = project.github.split("/"),
                 user = parts[0],
                 repo = parts[1];
 
