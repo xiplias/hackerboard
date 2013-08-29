@@ -1,4 +1,3 @@
-//Setting up route
 window.app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/projects', { templateUrl: 'views/projects/list.html' })
