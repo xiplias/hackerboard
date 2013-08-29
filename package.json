@@ -29,6 +29,7 @@
     "view-helpers": "latest",
     "mean-logger": "latest",
     "github": "latest",
-    "common": "latest"
+    "common": "latest",
+    "forever": "latest"    
   }
 }
