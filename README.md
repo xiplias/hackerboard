@@ -10,6 +10,12 @@ Requires a running mongodb
 npm install
 ```
 
+2. Install yeoman packages
+```bash
+cd client
+npm install
+```
+
 2. Install compass
 ```bash
 gem install compass
@@ -22,5 +28,5 @@ npm install -g grunt-cli
 
 4. Start dev server port 3000
 ```bash
-grunt
+node server.js
 ```
