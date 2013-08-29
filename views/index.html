@@ -1,0 +1,16 @@
+<div class="welcome" ng-init="activity()">
+  <h2>Latest Activity</h2>
+  <table cellspacing="3">
+    <tr ng-repeat="activity in activities">
+      <td style="padding: 10px;white-space: nowrap;border-bottom: 5px #eceef1 solid;">
+        <a href="http://github.com/{{activity.author.login}}">{{activity.commit.committer.name}}</a>
+        <br>{{activity.commit.committer.date | fromNow }}
+      </td>
+      <td style="padding: 10px;border-bottom: 5px #eceef1 solid; border-left: 3px #666 solid">
+        {{activity.repo}}
+        <br>
+        <h4 style="padding: 0; margin: 0">{{activity.commit.message}}</h4>
+      </td>
+    </tr>
+  </table>
+</div>
